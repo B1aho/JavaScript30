@@ -38,29 +38,41 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    const born1500s = inventors.filter(item => item.year >= 1500 && item.year <= 1600);
+    //console.table(born1500s); 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    const namesArray = inventors.map(inventor => inventor.first + ', ' + inventor.last);
+    //console.table(namesArray); 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    const sortedByBirtdate = inventors.sort((a, b) => b.year - a.year);
+    //console.table(sortedByBirtdate);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    const totalYears = inventors.reduce((total, current) => total + (current.passed - current.year), 0);
+    //console.log(`Total years = ${totalYears}`);
     // 5. Sort the inventors by years lived
-
+    const sortedByLivedYears = inventors.sort((a, b) => (a.passed - a.year) - (b.passed - b.year));
+    //console.table(sortedByLivedYears);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-
+    //https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    const sortedBySurname = people.sort((a, b) => {
+      let first = a.split(", ")[0];
+      let second = b.split(", ")[0];
+      return first.localeCompare(second);
+    })
+    console.table(sortedBySurname);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const instances = data.reduce(function (totalObj, currentItem) {
+      !totalObj[currentItem] ? totalObj[currentItem] = 1 : totalObj[currentItem]++;
+      return totalObj; 
+    } , {})
+    //console.log(instances);
   </script>
 </body>
 </html>
